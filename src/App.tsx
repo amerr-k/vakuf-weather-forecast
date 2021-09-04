@@ -59,7 +59,7 @@ class App extends React.Component<AppProps, AppState> {
 
     const { weatherForecast, currentDay } = this.state;
     console.log(weatherForecast);
-
+    //samo komentar
     return (
       <div>
         <div className={"weather-card-wrapper"}>
