@@ -1,5 +1,6 @@
 export interface IWeatherForecast {
   DateTime?: Date;
+  DayOfTheWeek?: string;
   Sunrise?: Date;
   Sunset?: Date;
   DayTemperature?: number;
@@ -14,9 +15,10 @@ export interface IWeatherForecast {
 
 class WeatherForecast implements IWeatherForecast {
   private _dateTime: Date;
+  private _dayOfTheWeek: string;
   private _sunrise: Date;
   private _sunset: Date;
-  private _dayTemperature: number;
+  private _dayTemperature?: number;
   private _eveningTemperature: number;
   private _maxTemperature: number;
   private _minTemperature: number;
@@ -27,18 +29,20 @@ class WeatherForecast implements IWeatherForecast {
 
   constructor(
     dateTime: Date,
+    dayOfTheWeek: string,
     sunrise: Date,
     sunset: Date,
-    dayTemperature: number,
     eveningTemperature: number,
     maxTemperature: number,
     minTemperature: number,
     morningTemperature: number,
     nigthTemperature: number,
     description: string,
-    weather: string
+    weather: string,
+    dayTemperature?: number
   ) {
     this._dateTime = dateTime;
+    this._dayOfTheWeek = dayOfTheWeek;
     this._sunrise = sunrise;
     this._sunset = sunset;
     this._dayTemperature = dayTemperature;
@@ -57,6 +61,14 @@ class WeatherForecast implements IWeatherForecast {
 
   public set DateTime(value) {
     this._dateTime = value;
+  }
+
+  public get DayOfTheWeek() {
+    return this._dayOfTheWeek;
+  }
+
+  public set DayOfTheWeek(value) {
+    this._dayOfTheWeek = value;
   }
 
   public get Sunrise() {
