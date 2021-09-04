@@ -1,0 +1,23 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.weather-card-wrapper {
+  display: flex;
+}
+
+.weather-forecast-card {
+  border: 1px solid red;
+  width: 300px;
+  height: 300px;
+}
+
+.weather-icon {
+  width: 150px;
+  display: block;
+  border: 1px solid red;
+}
