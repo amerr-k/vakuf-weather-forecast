@@ -21,7 +21,7 @@ class App extends React.Component<AppProps, AppState> {
     super(props);
     this.state = {
       weatherForecast: [] as IWeatherForecast[],
-      currentDay: {} as IWeatherForecast,
+      currentDay: undefined,
     };
   }
 
