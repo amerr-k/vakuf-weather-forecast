@@ -7,25 +7,26 @@ import rainIcon from "../img/assets/rain.svg";
 import snowIcon from "../img/assets/snow.svg";
 import thunderstormIcon from "../img/assets/thunderstorm.svg";
 import { IWeatherForecast } from "../models/WeatherForecast";
-export interface WeatherDayCardProps {
+export interface CurrentWeatherDayCardProps {
   className?: string;
 
-  weatherForecastDay?: IWeatherForecast;
+  currentDay?: IWeatherForecast;
 }
 
-export interface WeatherDayCardState {}
+export interface CurrentWeatherDayCardState {}
 
-class WeatherDayCard extends React.Component<
-  WeatherDayCardProps,
-  WeatherDayCardState
+class CurrentWeatherDayCard extends React.Component<
+  CurrentWeatherDayCardProps,
+  CurrentWeatherDayCardState
 > {
-  constructor(props: WeatherDayCardProps) {
+  constructor(props: CurrentWeatherDayCardProps) {
     super(props);
+
     this.state = {};
   }
 
   getRightWeatherIcon = (): string => {
-    switch (this.props.weatherForecastDay?.Weather) {
+    switch (this.props.currentDay?.Weather) {
       case "Rain":
         return rainIcon;
       case "Clouds":
@@ -44,12 +45,23 @@ class WeatherDayCard extends React.Component<
   };
 
   render() {
-    const { weatherForecastDay, className } = this.props;
+    const { currentDay, className } = this.props;
 
     return (
       <div className={className}>
-        <div>
-          <span>{weatherForecastDay?.DayOfTheWeek}</span>
+        <div className={"current-data-wrapper"}>
+          <div>
+            {" "}
+            <span>{currentDay?.DayOfTheWeek}</span>{" "}
+            <span>{currentDay?.DateTime?.toLocaleDateString()}</span>
+          </div>
+          <div className={"current-temp"}>
+            {currentDay?.CurrentTemperature} <span>&#8451;</span>
+          </div>
+          <div>
+            {currentDay?.MinTemperature} / {currentDay?.MaxTemperature}{" "}
+            <span>&#8451;</span>
+          </div>
         </div>
         <div>
           <img
@@ -58,14 +70,9 @@ class WeatherDayCard extends React.Component<
             alt="weatherIcon"
           />
         </div>
-
-        <div>
-          {weatherForecastDay?.MinTemperature} /{" "}
-          {weatherForecastDay?.MaxTemperature} <span>&#8451;</span>
-        </div>
       </div>
     );
   }
 }
 
-export default WeatherDayCard;
+export default CurrentWeatherDayCard;
