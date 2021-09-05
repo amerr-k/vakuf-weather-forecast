@@ -3,7 +3,6 @@ export interface IWeatherForecast {
   DayOfTheWeek?: string;
   Sunrise?: Date;
   Sunset?: Date;
-  DayTemperature?: number;
   EveningTemperature?: number;
   MaxTemperature?: number;
   MinTemperature?: number;
@@ -11,6 +10,7 @@ export interface IWeatherForecast {
   NightTemperature?: number;
   Description?: string;
   Weather: string;
+  CurrentTemperature?: number;
 }
 
 class WeatherForecast implements IWeatherForecast {
@@ -18,7 +18,6 @@ class WeatherForecast implements IWeatherForecast {
   private _dayOfTheWeek: string;
   private _sunrise: Date;
   private _sunset: Date;
-  private _dayTemperature?: number;
   private _eveningTemperature: number;
   private _maxTemperature: number;
   private _minTemperature: number;
@@ -26,6 +25,7 @@ class WeatherForecast implements IWeatherForecast {
   private _nightTemperature: number;
   private _description: string;
   private _weather: string;
+  private _currentTemperature?: number;
 
   constructor(
     dateTime: Date,
@@ -39,13 +39,12 @@ class WeatherForecast implements IWeatherForecast {
     nigthTemperature: number,
     description: string,
     weather: string,
-    dayTemperature?: number
+    currentTemperature?: number
   ) {
     this._dateTime = dateTime;
     this._dayOfTheWeek = dayOfTheWeek;
     this._sunrise = sunrise;
     this._sunset = sunset;
-    this._dayTemperature = dayTemperature;
     this._eveningTemperature = eveningTemperature;
     this._maxTemperature = maxTemperature;
     this._minTemperature = minTemperature;
@@ -53,6 +52,7 @@ class WeatherForecast implements IWeatherForecast {
     this._nightTemperature = nigthTemperature;
     this._description = description;
     this._weather = weather;
+    this._currentTemperature = currentTemperature;
   }
 
   public get DateTime() {
@@ -87,12 +87,12 @@ class WeatherForecast implements IWeatherForecast {
     this._sunset = value;
   }
 
-  public get DayTemperature() {
-    return this._dayTemperature;
+  public get CurrentTemperature() {
+    return this._currentTemperature;
   }
 
-  public set DayTemperature(value) {
-    this._dayTemperature = value;
+  public set CurrentTemperature(value) {
+    this._currentTemperature = value;
   }
 
   public get EveningTemperature() {
